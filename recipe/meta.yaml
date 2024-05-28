@@ -12,7 +12,7 @@ source:
     - test.patch  # disable tests which require multiple compute nodes
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
 
 requirements:
@@ -22,11 +22,11 @@ requirements:
     - make
   host:
     - flux-core
-    - openmpi >5.0
+    - {{ mpi }}
     - jansson
   run:
     - flux-core
-    - openmpi >5.0
+    - {{ mpi }}
 
 test:
   commands:
