@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/flux-framework/flux-pmix/releases/download/v{{ version }}/flux-pmix-{{ version }}.tar.gz
   sha256: 31f9d9b99f8a75c05e2fd183a35998f104d8e80bd819c57252aca477be0d4c6e
-  patches:
-    - test.patch  # disable tests which require multiple compute nodes
 
 build:
   number: 0
