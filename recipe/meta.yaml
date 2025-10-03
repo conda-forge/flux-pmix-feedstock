@@ -27,7 +27,6 @@ requirements:
     - jansson
     - libpmix
     - libpmix-devel
-    - pmix-bin
   run:
     - flux-core
     - {{ mpi }}
