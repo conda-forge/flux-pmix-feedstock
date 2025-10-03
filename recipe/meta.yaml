@@ -12,7 +12,7 @@ source:
     - test.patch  # disable tests which require multiple compute nodes
 
 build:
-  number: 1
+  number: 2
   skip: true  # [not linux]
 
 requirements:
