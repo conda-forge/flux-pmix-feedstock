@@ -1,2 +1,4 @@
 mpi:
 - openmpi
+libpmix_devel:
+- "5"
