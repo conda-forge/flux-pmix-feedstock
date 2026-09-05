@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: flux-pmix
+  version: "0.7.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/flux-framework/flux-pmix/releases/download/v${{ version }}/flux-pmix-${{ version }}.tar.gz
+  sha256: 0530d203370b13b63263ee48ecc829ab6bddadabf4e66ea470983f6f530a410f
+
+build:
+  number: 1
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - make
+    - pkg-config
+  host:
+    - flux-core
+    - ${{ mpi }}
+    - jansson
+    - libpmix
+    - libpmix-devel
+  run:
+    - flux-core
+    - ${{ mpi }}
+
+tests:
+  - script:
+      - flux --help
+
+about:
+  summary: flux shell plugin to bootstrap openmpi v5+
+  license: LGPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/flux-framework/flux-pmix
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
