@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: flux-pmix
-  version: "0.7.1"
+  version: "0.8.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-pmix/releases/download/v${{ version }}/flux-pmix-${{ version }}.tar.gz
-  sha256: 0530d203370b13b63263ee48ecc829ab6bddadabf4e66ea470983f6f530a410f
+  sha256: b8aac606b91f141e68bd1cc086cb0fecb1e318f1e92d5c4aa7402847f4beceb2
 
 build:
-  number: 1
+  number: 0
   skip: not linux
 
 requirements:
