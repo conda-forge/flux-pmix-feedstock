@@ -29,6 +29,7 @@ requirements:
     - libpmix
     - libpmix-devel
     - libxml2
+    - libxml2-devel
   run:
     - flux-core
     - ${{ mpi }}
