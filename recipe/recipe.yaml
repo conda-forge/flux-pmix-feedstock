@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: flux-pmix
-  version: "0.8.0"
+  version: "0.9.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/flux-framework/flux-pmix/releases/download/v${{ version }}/flux-pmix-${{ version }}.tar.gz
-  sha256: b8aac606b91f141e68bd1cc086cb0fecb1e318f1e92d5c4aa7402847f4beceb2
+  sha256: 7beeab7fb3b1f9d883cfa4dabdfae02474a6eab775dd58c8d3b1f7124c8aa62f
 
 build:
   number: 0
@@ -28,6 +28,8 @@ requirements:
     - jansson
     - libpmix
     - libpmix-devel
+    - libxml2
+    - libxml2-devel
   run:
     - flux-core
     - ${{ mpi }}
