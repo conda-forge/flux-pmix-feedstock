@@ -11,6 +11,12 @@ package:
 source:
   url: https://github.com/flux-framework/flux-pmix/releases/download/v${{ version }}/flux-pmix-${{ version }}.tar.gz
   sha256: 7beeab7fb3b1f9d883cfa4dabdfae02474a6eab775dd58c8d3b1f7124c8aa62f
+  patches:
+    # rename `struct wait`, which clashes with glibc 2.17's `union wait`
+    - 0001-rename-struct-wait.patch
+    # skip node-info-array tests: libpmix 5.0.8 lacks hostname alias
+    # support (added in 5.0.9) that the multi-shell-per-host test setup needs
+    - 0002-skip-node-info-array-tests.patch
 
 build:
   number: 0
