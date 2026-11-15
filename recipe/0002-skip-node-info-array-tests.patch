@@ -1,0 +1,35 @@
+diff --git a/t/t0011-stdkeys.t b/t/t0011-stdkeys.t
+index 0041d1c..114d0e7 100755
+--- a/t/t0011-stdkeys.t
++++ b/t/t0011-stdkeys.t
+@@ -281,7 +281,7 @@ test_expect_success 'node: pmix.lpeers (provided)' '
+ 	EOT
+ 	getkey_cmp pmix.lpeers lpeers.exp $NODEPROC
+ '
+-test_expect_success 'node: pmix.lldr (provided)' '
++test_expect_success NODE_INFO_ARRAY_ALIAS 'node: pmix.lldr (provided)' '
+ 	cat >lldr.exp <<-EOT &&
+ 	0: 0
+ 	1: 0
+@@ -297,10 +297,10 @@ test_expect_success 'node: pmix.lldr (provided)' '
+ # the Standard defines PMIX_LOCAL_PROCS (Chap_API_Struct) but not
+ # PMIX_NODE_OVERSUBSCRIBED, so the first is a shortfall against the
+ # client's own Standard and the second is not.
+-test_expect_success OPENPMIX4_CLIENT 'node: pmix.lprocs (provided)' '
++test_expect_success OPENPMIX4_CLIENT,NODE_INFO_ARRAY_ALIAS 'node: pmix.lprocs (provided)' '
+ 	getkey_cmp pmix.lprocs lpeers.exp $NODEPROC
+ '
+-test_expect_success OPENPMIX4_CLIENT 'node: pmix.ndosub (provided) is false with a core per task' '
++test_expect_success OPENPMIX4_CLIENT,NODE_INFO_ARRAY_ALIAS 'node: pmix.ndosub (provided) is false with a core per task' '
+ 	cat >ndosub.exp <<-EOT &&
+ 	0: false
+ 	1: false
+@@ -308,7 +308,7 @@ test_expect_success OPENPMIX4_CLIENT 'node: pmix.ndosub (provided) is false with
+ 	EOT
+ 	getkey_cmp pmix.ndosub ndosub.exp $NODEPROC
+ '
+-test_expect_success OPENPMIX4_CLIENT 'node: pmix.ndosub (provided) is true with 3 tasks on a core' '
++test_expect_success OPENPMIX4_CLIENT,NODE_INFO_ARRAY_ALIAS 'node: pmix.ndosub (provided) is true with 3 tasks on a core' '
+ 	cat >ndosub3.exp <<-EOT &&
+ 	0: true
+ 	1: true

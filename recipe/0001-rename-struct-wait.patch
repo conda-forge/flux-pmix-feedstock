@@ -1,0 +1,48 @@
+diff --git a/t/src/requests.c b/t/src/requests.c
+index 11ce30b..239f52e 100644
+--- a/t/src/requests.c
++++ b/t/src/requests.c
+@@ -58,14 +58,14 @@ static void __attribute__ ((unused)) skipped (const char *name)
+  * and 4.x; the nonblocking forms did not, so those are used with a
+  * callback that just hands the status back.
+  */
+-struct wait {
++struct reqwait {
+     pthread_mutex_t lock;
+     pthread_cond_t cond;
+     bool done;
+     pmix_status_t status;
+ };
+ 
+-static void wait_init (struct wait *w)
++static void wait_init (struct reqwait *w)
+ {
+     pthread_mutex_init (&w->lock, NULL);
+     pthread_cond_init (&w->cond, NULL);
+@@ -73,7 +73,7 @@ static void wait_init (struct wait *w)
+     w->status = PMIX_SUCCESS;
+ }
+ 
+-static void wait_done (struct wait *w, pmix_status_t status)
++static void wait_done (struct reqwait *w, pmix_status_t status)
+ {
+     pthread_mutex_lock (&w->lock);
+     w->status = status;
+@@ -82,7 +82,7 @@ static void wait_done (struct wait *w, pmix_status_t status)
+     pthread_mutex_unlock (&w->lock);
+ }
+ 
+-static pmix_status_t wait_for (struct wait *w, pmix_status_t rc)
++static pmix_status_t wait_for (struct reqwait *w, pmix_status_t rc)
+ {
+     if (rc != PMIX_SUCCESS)
+         return rc;
+@@ -145,7 +145,7 @@ int main (int argc, char **argv)
+     pmix_info_t info[2];
+     pmix_info_t *results = NULL;
+     size_t nresults = 0;
+-    struct wait w;
++    struct reqwait w;
+     int rc;
+ 
+     char name[512];
